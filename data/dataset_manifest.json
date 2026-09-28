@@ -1,0 +1,43 @@
+{
+  "source": {
+    "dataset": "hotpotqa/hotpot_qa",
+    "config": "distractor",
+    "split": "validation",
+    "n_source_items": 7405
+  },
+  "counts": {
+    "corpus_docs": 5670,
+    "deleted_titles": 238,
+    "dev": 420,
+    "test": 180,
+    "dev_unanswerable": 84,
+    "test_unanswerable": 36,
+    "levels": {
+      "hard": 600
+    },
+    "types": {
+      "bridge": 479,
+      "comparison": 121
+    }
+  },
+  "sha256_16": {
+    "corpus.jsonl": "faca83cf421009fd",
+    "dev.jsonl": "9db6754896e4e31a",
+    "test.jsonl": "361b7c604aef696f"
+  },
+  "config": {
+    "root": "/Users/ritthickthiaga/Desktop/Work/agentic-rag",
+    "data_dir": "/Users/ritthickthiaga/Desktop/Work/agentic-rag/data",
+    "results_dir": "/Users/ritthickthiaga/Desktop/Work/agentic-rag/results",
+    "cache_dir": "/Users/ritthickthiaga/Desktop/Work/agentic-rag/.cache/llm",
+    "qdrant_path": "/Users/ritthickthiaga/Desktop/Work/agentic-rag/qdrant_storage",
+    "anthropic_model": "claude-haiku-4-5-20251001",
+    "embed_model": "BAAI/bge-small-en-v1.5",
+    "top_k": 5,
+    "collection": "hotpotqa_paragraphs",
+    "seed": 42,
+    "n_questions": 600,
+    "unanswerable_frac": 0.2,
+    "test_frac": 0.3
+  }
+}

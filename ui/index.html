@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentic RAG</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- ─── sidebar: the corpus ─────────────────────────────────────────── -->
+  <aside class="sidebar">
+    <header class="brand">
+      <div class="brand-mark" aria-hidden="true"></div>
+      <div>
+        <h1>Agentic RAG</h1>
+        <p class="brand-sub" id="corpus-summary">loading…</p>
+      </div>
+    </header>
+
+    <div class="drop-zone" id="drop-zone" tabindex="0" role="button"
+         aria-label="Upload documents">
+      <input type="file" id="file-input" multiple hidden
+             accept=".pdf,.docx,.pptx,.xlsx,.xlsm,.md,.markdown,.txt,.text,.rst,.csv,.log,.html,.htm">
+      <svg viewBox="0 0 24 24" class="drop-icon" aria-hidden="true">
+        <path d="M12 16V4m0 0L8 8m4-4l4 4M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"
+              fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="drop-title">Drop files here</p>
+      <p class="drop-hint">PDF · DOCX · PPTX · XLSX · MD · TXT · HTML</p>
+    </div>
+
+    <form class="url-row" id="url-form">
+      <input type="url" id="url-input" placeholder="or paste a URL…" autocomplete="off">
+      <button type="submit" class="btn-icon" title="Fetch and index this URL" aria-label="Add URL">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6l6 6-6 6"
+          fill="none" stroke="currentColor" stroke-width="1.8"
+          stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </form>
+
+    <div class="doc-toolbar">
+      <span class="doc-count" id="doc-count"></span>
+      <button class="link-btn" id="toggle-all" hidden>Select all</button>
+    </div>
+
+    <ul class="doc-list" id="doc-list"></ul>
+
+    <footer class="sidebar-foot">
+      <div class="scope-note" id="scope-note">Searching all documents</div>
+      <a class="link-btn" href="/docs" target="_blank" rel="noopener">API docs ↗</a>
+    </footer>
+  </aside>
+
+  <!-- ─── main: the conversation ──────────────────────────────────────── -->
+  <main class="main">
+    <div class="thread" id="thread">
+      <div class="empty-state" id="empty-state">
+        <h2>Ask your documents a question</h2>
+        <p>Every claim in an answer is traced back to the passage it came from, and
+           the quote behind it is verified against the source before you see it.
+           When the documents don't contain the answer, you get told that instead
+           of a guess.</p>
+        <div class="examples" id="examples"></div>
+      </div>
+    </div>
+
+    <form class="composer" id="composer">
+      <textarea id="question" rows="1" placeholder="Ask a question…"
+                autocomplete="off" spellcheck="true"></textarea>
+      <button type="submit" id="send" class="btn-send" aria-label="Send">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l16-8-6 8 6 8z"
+          fill="currentColor"/></svg>
+      </button>
+    </form>
+  </main>
+
+  <!-- ─── source drawer: where a citation leads ───────────────────────── -->
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <header class="drawer-head">
+      <div>
+        <p class="drawer-label">Source</p>
+        <h3 id="drawer-title">—</h3>
+        <p class="drawer-loc" id="drawer-loc"></p>
+      </div>
+      <button class="btn-icon" id="drawer-close" aria-label="Close">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"
+          fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+    <div class="drawer-body" id="drawer-body"></div>
+  </aside>
+
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+# --- secrets --------------------------------------------------------------
+.env
+
+# --- environment ----------------------------------------------------------
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+
+# --- generated at runtime, never committed --------------------------------
+# Cached LLM responses. Large, machine-specific, and a rerun regenerates them.
+.cache/
+
+# The served app's state: documents people uploaded, the live vector index, and
+# the SQLite registry. This is user data, not project data.
+storage/
+
+# The benchmark's own Qdrant directory. Rebuild with scripts/build_index.py.
+qdrant_storage/
+
+# --- deliberately NOT ignored ---------------------------------------------
+# data/*.jsonl   — the eval set. Committed so the benchmark is reproducible.
+# results/*.json — the measurements the README's table is built from. Committed
+#                  so the claims in it can be checked rather than taken on trust.
